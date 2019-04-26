@@ -1,4 +1,4 @@
-export const GetEmployees = "";
+export const GetEmployees = "https://localhost:5001/api/employee";
 
 export const SaveEmployees = "";
 
