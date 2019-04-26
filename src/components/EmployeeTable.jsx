@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Table } from "reactstrap";
-import { getEmployees } from "../services/fakeEmployeeService";
 import Employee from "./Employee";
 
-function EmployeeTable() {
-  const [employees, setEmployees] = useState(getEmployees());
+function EmployeeTable(props) {
+  const [employees, setEmployees] = useState(props.employees);
+
+  useEffect(() => {
+    setEmployees(props.employees);
+  });
 
   const handleDeleteEmployee = id => {
     const deleteEmployee = employees.filter(obj => obj.id !== id);

@@ -22,7 +22,6 @@ class NewEmployee extends Component {
     zip: ""
   };
   render() {
-    console.log(this.state);
     return (
       <Container>
         <Form>
