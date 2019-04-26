@@ -1,6 +1,6 @@
 export const GetEmployees = "https://localhost:5001/api/employee";
 
-export const SaveEmployees = "";
+export const SaveEmployees = "https://localhost:5001/api/employee";
 
 export const DeleteEmployees = "";
 

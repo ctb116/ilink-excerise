@@ -36,5 +36,30 @@ namespace ilinkApi.Controllers
         {
             return await _context.EmployeeInfo.ToListAsync();
         }
+
+        [HttpPost]
+        public async Task<ActionResult<EmployeeInfo>> PostTodoItem(EmployeeInfo info)
+        {
+            _context.EmployeeInfo.Add(info);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetEmployeeInfos), new { id = info.Id }, info);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEmployeeInfo(long id)
+        {
+            var employeeInfo = await _context.EmployeeInfo.FindAsync(id);
+
+            if (employeeInfo == null)
+            {
+                return NotFound();
+            }
+
+            _context.EmployeeInfo.Remove(employeeInfo);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }
