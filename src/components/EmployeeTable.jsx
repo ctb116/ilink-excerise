@@ -7,7 +7,6 @@ function EmployeeTable() {
   const [employees, setEmployees] = useState(getEmployees());
 
   const handleDeleteEmployee = id => {
-    console.log("delete" + id);
     const deleteEmployee = employees.filter(obj => obj.id !== id);
     setEmployees(deleteEmployee);
   };
