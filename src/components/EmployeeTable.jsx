@@ -1,32 +1,42 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Table } from "reactstrap";
 import { getEmployees } from "../services/fakeEmployeeService";
 import Employee from "./Employee";
 
-class EmployeeTable extends Component {
-  state = { employees: getEmployees() };
-  render() {
-    return (
-      <div>
-        <Table hover>
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>Name</th>
-              <th>Designation</th>
-              <th>Salary</th>
-              <th>Address</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.employees.map(employee => (
-              <Employee key={employee.id} employee={employee} />
-            ))}
-          </tbody>
-        </Table>
-      </div>
-    );
-  }
+function EmployeeTable() {
+  const [employees, setEmployees] = useState(getEmployees());
+
+  const handleDeleteEmployee = id => {
+    console.log("delete" + id);
+    const deleteEmployee = employees.filter(obj => obj.id !== id);
+    setEmployees(deleteEmployee);
+  };
+
+  return (
+    <React.Fragment>
+      <Table hover>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Salary</th>
+            <th>Address</th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody>
+          {employees.map(employee => (
+            <Employee
+              key={employee.id}
+              employee={employee}
+              onDeleteEmployee={handleDeleteEmployee}
+            />
+          ))}
+        </tbody>
+      </Table>
+    </React.Fragment>
+  );
 }
 
 export default EmployeeTable;
