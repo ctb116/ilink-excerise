@@ -10,9 +10,7 @@ const Employee = props => {
         <td>{props.employee.salary}</td>
         <td>{props.employee.address}</td>
         <td>
-          <button onClick={() => props.onDeleteEmployee(props.employee.id)}>
-            Delete
-          </button>
+          <button onClick={() => props.onDelete(props.employee)}>Delete</button>
         </td>
       </tr>
     </React.Fragment>

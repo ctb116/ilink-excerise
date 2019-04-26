@@ -9,10 +9,10 @@ function EmployeeTable(props) {
     setEmployees(props.employees);
   });
 
-  const handleDeleteEmployee = id => {
-    const deleteEmployee = employees.filter(obj => obj.id !== id);
-    setEmployees(deleteEmployee);
-  };
+  // const handleDeleteEmployee = id => {
+  //   const deleteEmployee = employees.filter(obj => obj.id !== id);
+  //   setEmployees(deleteEmployee);
+  // };
 
   return (
     <React.Fragment>
@@ -32,7 +32,7 @@ function EmployeeTable(props) {
             <Employee
               key={employee.id}
               employee={employee}
-              onDeleteEmployee={handleDeleteEmployee}
+              onDelete={props.onDelete}
             />
           ))}
         </tbody>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { GetEmployees } from "./services/endPoints";
+import { GetEmployees, DeleteEmployees } from "./services/endPoints";
 import EmployeeTable from "./components/EmployeeTable";
 import NewEmployee from "./components/NewEmployee";
 
@@ -12,11 +12,21 @@ class App extends Component {
     this.setState({ employees });
   }
 
+  handleDelete = async employee => {
+    console.log(employee.id);
+    await axios.delete(DeleteEmployees + "/" + employee.id);
+    const employees = this.state.employees.filter(e => e.id !== e.id);
+    this.setState({ employees });
+  };
+
   render() {
     console.log(this.state.employees);
     return (
       <React.Fragment>
-        <EmployeeTable employees={this.state.employees} />
+        <EmployeeTable
+          employees={this.state.employees}
+          onDelete={this.handleDelete}
+        />
         <NewEmployee />
       </React.Fragment>
     );
