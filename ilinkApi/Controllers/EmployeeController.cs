@@ -21,12 +21,12 @@ namespace ilinkApi.Controllers
             {
                 // Create a new TodoItem if collection is empty,
                 // which means you can't delete all EmployeeInfo.
-                _context.EmployeeInfo.Add(new EmployeeInfo { Name = "Alex Baldwin", Designation = "Sports Announcer", Salary = 75000, Address = "1 River Road" });
-                _context.EmployeeInfo.Add(new EmployeeInfo { Name = "Abigail Cocoroco", Designation = "Biologist", Salary = 80000, Address = "345 Pierre Ave" });
-                _context.EmployeeInfo.Add(new EmployeeInfo { Name = "Harvey Everclear", Designation = "Doctor", Salary = 100000, Address = "911 Medical Drive" });
-                _context.EmployeeInfo.Add(new EmployeeInfo { Name = "Penny Rekt", Designation = "Teacher", Salary = 60000, Address = "897 Trailer Road" });
-                _context.EmployeeInfo.Add(new EmployeeInfo { Name = "Emily Bruih", Designation = "Fashion Designer", Salary = 35000, Address = "2 Willow Lane" });
-                _context.EmployeeInfo.Add(new EmployeeInfo { Name = "Gus Pot", Designation = "Bartender", Salary = 30000, Address = "600 Stardrop Way" });
+                _context.EmployeeInfo.Add(new EmployeeInfo { Name = "Alex Baldwin", Designation = "Sports Announcer", Salary = 75000, Address1 = "1 River Road", Address2 = "Seattle WA, 98038" });
+                _context.EmployeeInfo.Add(new EmployeeInfo { Name = "Abigail Cocoroco", Designation = "Biologist", Salary = 80000, Address1 = "345 Pierre Ave", Address2 = "Seattle WA, 98038" });
+                _context.EmployeeInfo.Add(new EmployeeInfo { Name = "Harvey Everclear", Designation = "Doctor", Salary = 100000, Address1 = "911 Medical Drive", Address2 = "Seattle WA, 98038" });
+                _context.EmployeeInfo.Add(new EmployeeInfo { Name = "Penny Rekt", Designation = "Teacher", Salary = 60000, Address1 = "897 Trailer Road", Address2 = "Seattle WA, 98038" });
+                _context.EmployeeInfo.Add(new EmployeeInfo { Name = "Emily Bruih", Designation = "Fashion Designer", Salary = 35000, Address1 = "2 Willow Lane", Address2 = "Seattle WA, 98038" });
+                _context.EmployeeInfo.Add(new EmployeeInfo { Name = "Gus Pot", Designation = "Bartender", Salary = 30000, Address1 = "600 Stardrop Way", Address2 = "Seattle WA, 98038" });
                 _context.SaveChanges();
             }
         }

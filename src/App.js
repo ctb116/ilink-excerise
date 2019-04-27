@@ -1,33 +1,74 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { GetEmployees, DeleteEmployees } from "./services/endPoints";
+import {
+  GetEmployees,
+  SaveEmployees,
+  DeleteEmployees
+} from "./services/endPoints";
 import EmployeeTable from "./components/EmployeeTable";
 import NewEmployee from "./components/NewEmployee";
 
 class App extends Component {
-  state = { employees: [] };
+  state = {
+    employees: [],
+    name: "",
+    designation: "",
+    salary: "",
+    address1: "",
+    address2: "",
+    city: "",
+    state: "",
+    zip: ""
+  };
 
   async componentDidMount() {
     const { data: employees } = await axios.get(GetEmployees);
     this.setState({ employees });
   }
 
-  handleDelete = async employee => {
-    console.log(employee.id);
-    await axios.delete(DeleteEmployees + "/" + employee.id);
-    const employees = this.state.employees.filter(e => e.id !== e.id);
+  handleChange = evt => {
+    this.setState({ [evt.target.name]: evt.target.value });
+  };
+
+  getNewEmployee = () => {
+    let address1 = this.state.address1.concat(", " + this.state.address2);
+    let address2 = this.state.city.concat(
+      " " + this.state.state + ", " + this.state.zip
+    );
+    return {
+      name: this.state.name,
+      designation: this.state.designation,
+      salary: this.state.salary,
+      address1: address1,
+      address2: address2
+    };
+  };
+
+  handleAdd = async () => {
+    const { data: employee } = await axios.post(
+      SaveEmployees,
+      this.getNewEmployee()
+    );
+    const employees = [...this.state.employees, employee];
     this.setState({ employees });
   };
 
+  handleDelete = async id => {
+    await axios.delete(DeleteEmployees + "/" + id);
+    const employees = this.state.employees.filter(e => e.id !== id);
+    this.setState({ employees });
+    window.location.reload();
+  };
+
   render() {
-    console.log(this.state.employees);
+    console.log(this.state);
     return (
       <React.Fragment>
         <EmployeeTable
           employees={this.state.employees}
           onDelete={this.handleDelete}
         />
-        <NewEmployee />
+        <NewEmployee onChange={this.handleChange} onAdd={this.handleAdd} />
       </React.Fragment>
     );
   }

@@ -7,10 +7,15 @@ const Employee = props => {
         <td>{props.employee.id}</td>
         <td>{props.employee.name}</td>
         <td>{props.employee.designation}</td>
-        <td>{props.employee.salary}</td>
-        <td>{props.employee.address}</td>
+        <td>${props.employee.salary}/yr</td>
         <td>
-          <button onClick={() => props.onDelete(props.employee)}>Delete</button>
+          <p>{props.employee.address1}</p>
+          <p>{props.employee.address2}</p>
+        </td>
+        <td>
+          <button onClick={() => props.onDelete(props.employee.id)}>
+            Delete
+          </button>
         </td>
       </tr>
     </React.Fragment>

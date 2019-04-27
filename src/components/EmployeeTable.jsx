@@ -9,11 +9,6 @@ function EmployeeTable(props) {
     setEmployees(props.employees);
   });
 
-  // const handleDeleteEmployee = id => {
-  //   const deleteEmployee = employees.filter(obj => obj.id !== id);
-  //   setEmployees(deleteEmployee);
-  // };
-
   return (
     <React.Fragment>
       <Table hover>
