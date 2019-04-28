@@ -1,6 +1,11 @@
-.container-walls {
+/* With styling, if I want to change something, such as color, 
+I only want to have to change it in one location */
+/* so often I end up styling from the app component down the app tree */
+
+.container-app {
   border-top-style: none;
   border-right-style: solid;
   border-bottom-style: none;
   border-left-style: solid;
+  background-color: white;
 }

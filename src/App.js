@@ -2,6 +2,7 @@
 //followed by third party components,
 //then internal components and finally css style sheets.
 import React, { Component } from "react";
+import { Route, Switch } from "react-router-dom";
 import axios from "axios";
 import { Container } from "reactstrap";
 import {
@@ -11,6 +12,7 @@ import {
 } from "./services/endPoints";
 import EmployeeTable from "./components/EmployeeTable";
 import Header from "./components/Header";
+import NavBar from "./components/NavBar";
 import NewEmployee from "./components/NewEmployee";
 import "./styles/app.css";
 
@@ -71,17 +73,32 @@ class App extends Component {
   render() {
     return (
       <Container>
-        <div className="container-walls">
+        <div className="container-app">
           <Header />
-          <EmployeeTable
-            employees={this.state.employees}
-            onDelete={this.handleDelete}
-          />
-          <NewEmployee
-            onChange={this.handleChange}
-            onAdd={this.handleAdd}
-            getValidation={this.state}
-          />
+          <NavBar />
+          {/* Switch and Route components display components if path matches exactly */}
+          {/* Route passes its own set of props to components so I use the render attribute to pass additional props */}
+          <Switch>
+            <Route
+              path="/newemployee"
+              render={() => (
+                <NewEmployee
+                  onChange={this.handleChange}
+                  onAdd={this.handleAdd}
+                  getValidation={this.state}
+                />
+              )}
+            />
+            <Route
+              path="/"
+              render={() => (
+                <EmployeeTable
+                  employees={this.state.employees}
+                  onDelete={this.handleDelete}
+                />
+              )}
+            />
+          </Switch>
         </div>
       </Container>
     );

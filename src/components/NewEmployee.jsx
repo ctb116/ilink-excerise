@@ -5,8 +5,6 @@ import {
   Button,
   Form,
   FormGroup,
-  FormFeedback,
-  FormText,
   Label,
   Input,
   Row
@@ -20,12 +18,17 @@ function NewEmployee(props) {
   //   setEmployees(props.employees);
   // });
 
-  //Checks if form input is valid before submitting
+  //HandleClick() checks if form input is complete before submitting
+  //it gets the state from App as a prop as stateObj
+  //formKeys lists the keys related to the form in stateObj
+  //formKeys is beneficial because it's specific - if something is added to state in App it won't interfer with form validation
+  //formValues returns a new obj with only form key/values
+  //formValues is changed from obj to an array of strings
+  //valid function tests elements of formArray for string length - returns a boolean
+  //if valid function returns true (any input is left blank) then alert appears
+  //else the new employee information is submitted
   function handleClick() {
-    //gets the state from App as a prop
     let stateObj = props.getValidation;
-    //list of desired keys from the stateObj
-    //Very specific so if something is added to state in App it won't interfer with form validation
     const formKeys = [
       "name",
       "designation",
@@ -36,21 +39,16 @@ function NewEmployee(props) {
       "state",
       "zip"
     ];
-    //returns a new obj with only form key/values
     const formValues = Object.keys(stateObj)
       .filter(key => formKeys.includes(key))
       .reduce((obj, key) => {
         obj[key] = stateObj[key];
         return obj;
       }, {});
-    //change obj to array
     let formArray = Object.values(formValues);
-    //function to test elements of formArray for string length - returns a boolean
     let valid = function(e) {
       return e.length === 0;
     };
-    //if valid function returns true (any input is left blank) then alert appears
-    //else the new employee information is submitted
     if (formArray.some(valid) === true) {
       alert("Please complete missing employee information");
     } else {
@@ -63,6 +61,7 @@ function NewEmployee(props) {
       <Form>
         <Row form>
           <Col md={6}>
+            {/* Name */}
             <FormGroup>
               <Label>Name</Label>
               <Input
@@ -75,6 +74,7 @@ function NewEmployee(props) {
         </Row>
         <Row form>
           <Col md={6}>
+            {/* Designation */}
             <FormGroup>
               <Label>Designation</Label>
               <Input
@@ -82,10 +82,10 @@ function NewEmployee(props) {
                 onChange={event => props.onChange(event)}
                 placeholder="designation"
               />
-              <FormText>Your username is most likely your email.</FormText>
             </FormGroup>
           </Col>
           <Col md={6}>
+            {/* Salary */}
             <FormGroup>
               <Label>Salary</Label>
               <Input
@@ -98,6 +98,7 @@ function NewEmployee(props) {
         </Row>
         <Row form>
           <Col md={6}>
+            {/* Address 1 */}
             <FormGroup>
               <Label>Address</Label>
               <Input
@@ -108,6 +109,7 @@ function NewEmployee(props) {
             </FormGroup>
           </Col>
           <Col md={6}>
+            {/* Address 2 */}
             <FormGroup>
               <Label>Address 2</Label>
               <Input
@@ -121,18 +123,21 @@ function NewEmployee(props) {
         </Row>
         <Row form>
           <Col md={6}>
+            {/* City */}
             <FormGroup>
               <Label>City</Label>
               <Input name="city" onChange={event => props.onChange(event)} />
             </FormGroup>
           </Col>
           <Col md={4}>
+            {/* State */}
             <FormGroup>
               <Label>State</Label>
               <Input name="state" onChange={event => props.onChange(event)} />
             </FormGroup>
           </Col>
           <Col md={2}>
+            {/* Zip */}
             <FormGroup>
               <Label>Zip</Label>
               <Input name="zip" onChange={event => props.onChange(event)} />
