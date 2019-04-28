@@ -24,19 +24,34 @@ function NewEmployee(props) {
   function handleClick() {
     //gets the state from App as a prop
     let stateObj = props.getValidation;
-    //change the obj to an array
-    let formArray = Object.values(stateObj);
-    //remove the employees array from the newly made array
-    let formValues = formArray.splice(0, 1);
-    //function to test elements of formValues for string length
-    //returns a boolean
+    //list of desired keys from the stateObj
+    //Very specific so if something is added to state in App it won't interfer with form validation
+    const formKeys = [
+      "name",
+      "designation",
+      "salary",
+      "address1",
+      "address2",
+      "city",
+      "state",
+      "zip"
+    ];
+    //returns a new obj with only form key/values
+    const formValues = Object.keys(stateObj)
+      .filter(key => formKeys.includes(key))
+      .reduce((obj, key) => {
+        obj[key] = stateObj[key];
+        return obj;
+      }, {});
+    //change obj to array
+    let formArray = Object.values(formValues);
+    //function to test elements of formArray for string length - returns a boolean
     let valid = function(e) {
       return e.length === 0;
     };
-    let formValid = formValues.some(valid);
-    //if formValid returns false (any input is left blank) then alert appears
+    //if valid function returns true (any input is left blank) then alert appears
     //else the new employee information is submitted
-    if (formValid === false) {
+    if (formArray.some(valid) === true) {
       alert("Please complete missing employee information");
     } else {
       props.onAdd();
