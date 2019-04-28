@@ -3,13 +3,16 @@
 //then internal components and finally css style sheets.
 import React, { Component } from "react";
 import axios from "axios";
+import { Container } from "reactstrap";
 import {
   GetEmployees,
   SaveEmployees,
   DeleteEmployees
 } from "./services/endPoints";
 import EmployeeTable from "./components/EmployeeTable";
+import Header from "./components/Header";
 import NewEmployee from "./components/NewEmployee";
+import "./styles/app.css";
 
 //state in App because this is a small application
 class App extends Component {
@@ -67,17 +70,20 @@ class App extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <EmployeeTable
-          employees={this.state.employees}
-          onDelete={this.handleDelete}
-        />
-        <NewEmployee
-          onChange={this.handleChange}
-          onAdd={this.handleAdd}
-          getValidation={this.state}
-        />
-      </React.Fragment>
+      <Container>
+        <div className="container-walls">
+          <Header />
+          <EmployeeTable
+            employees={this.state.employees}
+            onDelete={this.handleDelete}
+          />
+          <NewEmployee
+            onChange={this.handleChange}
+            onAdd={this.handleAdd}
+            getValidation={this.state}
+          />
+        </div>
+      </Container>
     );
   }
 }

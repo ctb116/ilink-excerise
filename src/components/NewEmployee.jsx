@@ -69,11 +69,7 @@ function NewEmployee(props) {
                 name="name"
                 onChange={event => props.onChange(event)}
                 placeholder="name"
-                invalid={validName === false}
               />
-              <FormFeedback invalid>
-                Please enter employee's full name
-              </FormFeedback>
             </FormGroup>
           </Col>
         </Row>
@@ -85,10 +81,8 @@ function NewEmployee(props) {
                 name="designation"
                 onChange={event => props.onChange(event)}
                 placeholder="designation"
-                // invalid={valid === false}
               />
               <FormText>Your username is most likely your email.</FormText>
-              {/* <FormFeedback invalid>Add this</FormFeedback> */}
             </FormGroup>
           </Col>
           <Col md={6}>

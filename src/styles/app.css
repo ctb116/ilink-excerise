@@ -1,0 +1,6 @@
+.container-walls {
+  border-top-style: none;
+  border-right-style: solid;
+  border-bottom-style: none;
+  border-left-style: solid;
+}
