@@ -70,6 +70,7 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <Container>
         <div className="container-app">

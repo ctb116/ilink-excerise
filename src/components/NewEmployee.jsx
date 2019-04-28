@@ -10,6 +10,7 @@ import {
   Input,
   Row
 } from "reactstrap";
+import ZipcodeInput from "./ZipcodeInput";
 
 function NewEmployee(props) {
   const [valid, setValid] = useState(true);
@@ -141,7 +142,10 @@ function NewEmployee(props) {
             {/* Zip */}
             <FormGroup>
               <Label>Zip</Label>
-              <Input name="zip" onChange={event => props.onChange(event)} />
+              <ZipcodeInput
+                onChange={props.onChange}
+                value={props.getValidation}
+              />
             </FormGroup>
           </Col>
         </Row>
