@@ -67,7 +67,6 @@ class App extends Component {
     await axios.delete(DeleteEmployees + "/" + id);
     const employees = this.state.employees.filter(e => e.id !== id);
     this.setState({ employees });
-    window.location.reload();
   };
 
   render() {

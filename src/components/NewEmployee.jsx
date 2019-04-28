@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Col,
   Container,
@@ -11,12 +12,8 @@ import {
 } from "reactstrap";
 
 function NewEmployee(props) {
-  const [valid, setValid] = useState(false);
-  const [validName, setValidName] = useState(true);
-
-  // useEffect(() => {
-  //   setEmployees(props.employees);
-  // });
+  const [valid, setValid] = useState(true);
+  console.log(valid);
 
   //HandleClick() checks if form input is complete before submitting
   //it gets the state from App as a prop as stateObj
@@ -46,12 +43,15 @@ function NewEmployee(props) {
         return obj;
       }, {});
     let formArray = Object.values(formValues);
-    let valid = function(e) {
+    let checkValid = function(e) {
       return e.length === 0;
     };
-    if (formArray.some(valid) === true) {
+    if (formArray.some(checkValid) === true) {
       alert("Please complete missing employee information");
     } else {
+      // the application is rendered every time setState is called
+      // setValid works here but doesn't render when called
+      setValid(false);
       props.onAdd();
     }
   }
@@ -90,6 +90,7 @@ function NewEmployee(props) {
               <Label>Salary</Label>
               <Input
                 name="salary"
+                type="number"
                 onChange={event => props.onChange(event)}
                 placeholder="earned annually"
               />
@@ -144,7 +145,22 @@ function NewEmployee(props) {
             </FormGroup>
           </Col>
         </Row>
-        <Button onClick={() => handleClick()}>Submit</Button>
+        {/* I want to use a react hook here to determine if the submitt button - */}
+        {/* will route to employee list only if the new employee information is complete */}
+        {/* However I was unable to get this to work although I'm sure it's possible */}
+        {/* Without hooks I would keep a boolean in state for conditional routing */}
+        {/* The downside of that is I don't want to make this component stateful and - */}
+        {/* the closest parent state is in App. I would have to pass the boolean as a prop */}
+        {/* I like hooks for this reason as it avoids bloating my state with conditional rendering needs */}
+        {valid ? (
+          <Link to="/newemployee">
+            <Button onClick={() => handleClick()}>Submit</Button>
+          </Link>
+        ) : (
+          <Link to="/">
+            <Button onClick={() => handleClick()}>Submit</Button>
+          </Link>
+        )}
       </Form>
     </Container>
   );
