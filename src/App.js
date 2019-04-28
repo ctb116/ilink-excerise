@@ -1,3 +1,6 @@
+//imports are sorted first by react modules,
+//followed by third party components,
+//then internal components and finally css style sheets.
 import React, { Component } from "react";
 import axios from "axios";
 import {
@@ -8,6 +11,7 @@ import {
 import EmployeeTable from "./components/EmployeeTable";
 import NewEmployee from "./components/NewEmployee";
 
+//state in App because this is a small application
 class App extends Component {
   state = {
     employees: [],
@@ -26,6 +30,7 @@ class App extends Component {
     this.setState({ employees });
   }
 
+  //Changes in any form field from the NewEmployee component are set to state from this method.
   handleChange = evt => {
     this.setState({ [evt.target.name]: evt.target.value });
   };
@@ -61,14 +66,17 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <React.Fragment>
         <EmployeeTable
           employees={this.state.employees}
           onDelete={this.handleDelete}
         />
-        <NewEmployee onChange={this.handleChange} onAdd={this.handleAdd} />
+        <NewEmployee
+          onChange={this.handleChange}
+          onAdd={this.handleAdd}
+          getValidation={this.state}
+        />
       </React.Fragment>
     );
   }
