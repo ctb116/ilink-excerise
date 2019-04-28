@@ -1,3 +1,5 @@
+/* removes the arrows on a number input */
+
 input[id="zip"]::-webkit-inner-spin-button,
 input[id="zip"]::-webkit-outer-spin-button {
   -webkit-appearance: none;

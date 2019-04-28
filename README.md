@@ -13,6 +13,8 @@ Contact: _**catherinetybradley@gmail.com**_</br>
 6. type **npm start**
 7. navigate to localhost:3000
 
+- CORS is enabled in application but if still an issue disable CORS in your browser
+
 ## Known Issues
 
 - If all employees are deleted, the original list of employees will repopulate the table.

@@ -14,7 +14,6 @@ import ZipcodeInput from "./ZipcodeInput";
 
 function NewEmployee(props) {
   const [valid, setValid] = useState(true);
-  console.log(valid);
 
   //HandleClick() checks if form input is complete before submitting
   //it gets the state from App as a prop as stateObj
@@ -57,6 +56,10 @@ function NewEmployee(props) {
     }
   }
 
+  //This component would be broken down into smaller components
+  //such as I moved zipcode input to its own component because it required unique adjustments
+  //The same could be done for State input such as having a dropdown of States in the US to select from
+  //As a components start to have more than one motivation I start to break them down into smaller components
   return (
     <Container>
       <Form>

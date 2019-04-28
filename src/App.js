@@ -30,6 +30,9 @@ class App extends Component {
     zip: ""
   };
 
+  //Gets the employees which populates the employee table
+  //componentDidMount() triggers after the component renders -
+  //so makes it ideal place to put an api call
   async componentDidMount() {
     const { data: employees } = await axios.get(GetEmployees);
     this.setState({ employees });
@@ -40,6 +43,7 @@ class App extends Component {
     this.setState({ [evt.target.name]: evt.target.value });
   };
 
+  //some packaging of the new employee data before it goes to post
   getNewEmployee = () => {
     let address1 = this.state.address1.concat(", " + this.state.address2);
     let address2 = this.state.city.concat(
@@ -54,6 +58,7 @@ class App extends Component {
     };
   };
 
+  //new employee data is posted and state is updated
   handleAdd = async () => {
     const { data: employee } = await axios.post(
       SaveEmployees,
@@ -63,6 +68,7 @@ class App extends Component {
     this.setState({ employees });
   };
 
+  //handles deleting an employee
   handleDelete = async id => {
     await axios.delete(DeleteEmployees + "/" + id);
     const employees = this.state.employees.filter(e => e.id !== id);
@@ -70,7 +76,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <Container>
         <div className="container-app">

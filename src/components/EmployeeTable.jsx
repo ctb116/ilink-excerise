@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "reactstrap";
 import Employee from "./Employee";
-import "../styles/employeetable.css";
 
 function EmployeeTable(props) {
   const [employees, setEmployees] = useState(props.employees);
 
+  //useEffect is similar to componentDidMount
+  //this provides the list of employees to be rendered from the get api call in App
+  //Using setEmployees in UseEffect has created an EsLint warning
+  //However I am only familar with hooks and do not know how to fix the warning
   useEffect(() => {
     setEmployees(props.employees);
   });
@@ -23,6 +26,7 @@ function EmployeeTable(props) {
         </tr>
       </thead>
       <tbody>
+        {/* Creates an instance of Employee component for each employee */}
         {employees.map(employee => (
           <Employee
             key={employee.id}
